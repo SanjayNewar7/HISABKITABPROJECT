@@ -1,0 +1,2356 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Poppins';
+}
+:root{
+	/* Variables For Storing Colors */
+	--primary-clr: #ff7550;
+	--bg-primary: #1f1d2a;
+	--bg-secondary: #252935;
+	--bg-ternary: #35333f;
+	--heading-clr: #efefef;
+	--text-clr: #808191;
+	--gradient: linear-gradient(to right, #35333f, transparent);
+}
+body.active{
+	--primary-clr: #ff7550;
+	--bg-primary: #fff;
+	--bg-secondary: #f3f7fa;
+	--bg-ternary: #e7eaf0;
+	--heading-clr: #16192c;
+	--text-clr: #596780;
+	--gradient: linear-gradient(to right, #e1e5e8, transparent);
+}
+body{
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	max-height: 100vh;
+	overflow: hidden;
+}
+.site_name{
+	color: White;
+}
+.page-wrapper{
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	background-color: var(--bg-secondary);
+}
+/*   === Code For Top Bar Starts ===   */
+.page-wrapper .top-bar{
+	position: relative;
+	width: 100%;
+	height: 70px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 20px;
+	background-color: var(--bg-primary);
+	border-bottom: 2px solid var(--bg-secondary);
+	z-index: 2px;
+}
+.page-wrapper .top-bar .top-bar-left{
+	display: flex;
+	align-items: center;
+}
+.top-bar .top-bar-left .hamburger-btn{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 25px;
+	height: 18px;
+	cursor: pointer;
+	display: none;
+}
+.top-bar-left .hamburger-btn span{
+	width: 100%;
+	height: 2px;
+	background-color: var(--heading-clr);
+	border-radius: 15px;
+}
+.top-bar .top-bar-left .logo{
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.top-bar .top-bar-left .logo img{
+	width: 120px;
+}
+
+
+.top-bar .search-box{
+	position: relative;
+	width: 400px;
+	height: 37px;
+	left: -80px;
+	background-color: var(--bg-ternary);
+	border-radius: 50px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.top-bar .search-box .input-box{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding: 0px 50px 0px 20px;
+	border-radius: inherit;
+	background-color: var(--bg-ternary);
+	color: var(--heading-clr);
+	font-size: 14px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	outline: none;
+	border: none;
+}
+.top-bar .search-box .search-btn{
+	position: absolute;
+	width: 37px;
+	height: 37px;
+	right: 0;
+	border-radius: 50px;
+	background-color: var(--bg-ternary);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.top-bar .search-box .search-btn i{
+	color: var(--text-clr);
+	font-size: 15px;
+}
+.top-bar .top-bar-right{
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+.top-bar .top-bar-right .mode-switch,
+.top-bar .top-bar-right .notifications{
+	position: relative;
+}
+.top-bar .top-bar-right .mode-switch i,
+.top-bar .top-bar-right .notifications i{
+	font-size: 20px;
+	color: var(--text-clr);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+.top-bar .top-bar-right .mode-switch i:hover,
+.top-bar .top-bar-right .notifications i:hover{
+	color: var(--heading-clr);
+}
+.top-bar .top-bar-right .profile{
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	padding-left: 10px;
+	border-left: 2px solid var(--bg-ternary);
+}
+.top-bar .top-bar-right .profile img{
+	width: 37px;
+	height: 37px;
+	border-radius: 50%;
+	object-fit: cover;
+	cursor: pointer;
+}
+/*   === Top Bar Code Ends ===   */
+
+/*/* Sidebar Styling */
+.page-wrapper .side-bar {
+	position: fixed;
+	width: 240px;
+	height: calc(100vh - 70px);
+	top: 70px;
+	left: 0;
+	background-color: var(--bg-primary);
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 100;
+	transition: width 0.3s;
+}
+
+.page-wrapper .side-bar::-webkit-scrollbar {
+	width: 5px;
+}
+
+.page-wrapper .side-bar::-webkit-scrollbar-track {
+	border: 1px solid var(--bg-ternary);
+	background-color: var(--bg-primary);
+}
+
+.page-wrapper .side-bar::-webkit-scrollbar-thumb {
+	background-color: var(--bg-ternary);
+	border-radius: 5px;
+}
+
+/* Sidebar Menu Label */
+.side-bar .menu-label {
+	display: inline-block;
+	margin: 25px 0px 15px;
+	margin-left: 20px;
+	color: var(--heading-clr);
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+/* Sidebar Navbar Links */
+.side-bar ul.navbar-links {
+	width: 100%;
+	list-style: none;
+}
+
+.side-bar ul.navbar-links li {
+	position: relative;
+	width: 100%;
+}
+
+/* Gradient and vertical line on hover */
+.side-bar ul.navbar-links li:hover,
+.side-bar ul.navbar-links li.active {
+	background: var(--gradient); /* Apply gradient on hover and active */
+}
+
+.side-bar ul.navbar-links li::before {
+	position: absolute;
+	content: '';
+	width: 3px;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: transparent; /* Default transparent */
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+/* Show vertical line on hover and active */
+.side-bar ul.navbar-links li:hover::before,
+.side-bar ul.navbar-links li.active::before {
+	background-color: var(--primary-clr);
+}
+
+/* Sidebar Links */
+.side-bar ul.navbar-links li a {
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: var(--text-clr);
+	display: flex;
+	align-items: center;
+}
+
+/* Add some padding and spacing for better appearance */
+.side-bar ul.navbar-links li a .nav-icon {
+	margin-right: 15px; /* Space between icon and text */
+}
+
+.side-bar ul.navbar-links li a .nav-text {
+	font-size: 15px;
+}
+
+ul.navbar-links li a .nav-icon{
+	position: relative;
+	display: block;
+	min-width: 70px;
+	width: 70px;
+	height: 100%;
+	padding: 14px 0px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+ul.navbar-links li a .nav-icon i{
+	font-size: 17px;
+}
+ul.navbar-links li a .nav-text{
+	color: var(--text-clr);
+	white-space: nowrap;
+}
+ul.navbar-links li.active a .nav-icon i,
+ul.navbar-links li.active a .nav-text{
+	color: var(--heading-clr);
+}
+.side-bar .line{
+	position: relative;
+	display: inline-block;
+	width: calc(100% - 50px);
+	height: 1px;
+	background-color: var(--bg-ternary);
+	left: 25px;
+	margin: 20px auto 10px;
+}
+.side-bar .sidebar-footer{
+	position: relative;
+	width: 100%;
+	margin-top: 80px;
+	white-space: nowrap;
+}
+.side-bar .sidebar-footer .settings,
+.side-bar .sidebar-footer .logoutBtn{
+	position: relative;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	color: var(--text-clr);
+	border-top: 1px solid var(--bg-secondary);
+}
+.sidebar-footer .settings .gear-icon,
+.sidebar-footer .logoutBtn .logout-icon{
+	display: block;
+	position: relative;
+	min-width: 70px;
+	width: 70px;
+	height: 45px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.sidebar-footer .settings .gear-icon:hover,
+.sidebar-footer .logoutBtn .logout-icon:hover{
+	color: var(--heading-clr);
+}
+/*   === Code For Side Bar Ends ===   */
+
+/*   === Code For Contents Starts ===   */
+.page-wrapper .contents{
+	position: relative;
+	width: 100%;
+	min-height: calc(100vh - 70px);
+	height: calc(100vh - 70px);
+	overflow-y: auto;
+	padding-left: 240px;
+	transition: 0.3s;
+	z-index: 1;
+}
+.page-wrapper .contents::-webkit-scrollbar{
+	width: 7px;
+}
+.page-wrapper .contents::-webkit-scrollbar-track{
+	border-radius: 5px;
+}
+.page-wrapper .contents::-webkit-scrollbar-thumb{
+	background-color: var(--primary-clr);
+	border-radius: 5px;
+}
+/*   === Code For Panel Bar ===   */
+.contents .panel-bar {
+    position: relative;
+    width: 100%;
+    height: 135px;
+    background-color: var(--bg-primary);
+    padding: 20px;
+}
+
+.contents .panel-bar .row-1 {
+    width: 100%;
+}
+
+.contents .panel-bar .row-1 h1 {
+    color: var(--heading-clr);
+    font-size: 32px;
+    font-weight: 700; /* Set to 700 for bold */
+    letter-spacing: 1px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.contents .panel-bar .row-2 {
+    position: absolute;
+    bottom: 0;
+}
+
+.contents .panel-bar .row-2 a {
+    display: inline-block;
+    height: 100%;
+    margin-right: 25px; /* Default margin between links */
+    padding: 10px 0px 22px;
+    font-size: 15px;
+    text-decoration: none;
+    color: var(--text-clr);
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+/* Specific margin for "Checked-out Orders" */
+.contents .panel-bar .row-2 a:nth-of-type(4) {
+    margin-right: 25px; /* Space after "Checked-out Orders" */
+}
+
+/* Remove right margin for the last link */
+.contents .panel-bar .row-2 a:last-child {
+    margin-right: 0; /* No margin for the last link */
+}
+
+/* Hover state: Apply the hover effect */
+.contents .panel-bar .row-2 a:hover {
+    border-bottom: 1px solid var(--primary-clr); /* Border changes to primary color */
+    color: var(--primary-clr); /* Text color changes to primary color */
+}
+
+/* Active state: Apply the active style */
+.contents .panel-bar .row-2 a.active {
+    border-bottom: 1px solid var(--primary-clr); /* Keep border on active */
+    color: var(--primary-clr); /* Keep text color on active */
+}
+
+/*   === Code For Panel Ends ===   */
+
+/*   === Code For Description Starts ===   */
+.contents .description {
+    width: 100%;
+    padding: 30px 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    background-color: #2a2739;
+    grid-gap: 20px; /* Space between grid items */
+    /* background-color: yellow; */
+}
+
+/*   === Code For Description Ends ===   */
+
+/*   === Code For Column 1 Starts ===   */
+.contents .description .col-1{
+	position: relative;
+	width: 100%;
+}
+/*   === Balance Boxes Starts ===   */
+.description .col-1 .boxes-row{
+	position: relative;
+	width: 100%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 15px;
+}
+.col-1 .boxes-row .balance-box{
+	background-color: var(--bg-primary);
+	padding: 30px 25px;
+	color: var(--text-clr);
+	border-radius: 5px;
+}
+.boxes-row .balance-box .subject-row{
+	display: flex;
+	justify-content: space-between;
+}
+.boxes-row .balance-box .subject-row .text{
+	position: relative;
+}
+.balance-box .subject-row .text h3{
+	color: var(--text-clr);
+	font-size: 16px;
+	font-weight: 500;
+}
+.balance-box .subject-row .text h1{
+	color: var(--heading-clr);
+	font-size: calc(22px + 0.35vw);
+	font-weight: 500;
+	letter-spacing: 1px;
+	margin: 20px 0px;
+}
+.balance-box .subject-row .text h1 sub{
+	position: relative;
+	font-size: 13px;
+	color: var(--text-clr);
+	left: 3px;
+	top: -5px;
+}
+.balance-box .icon{
+	width: 45px;
+	height: 45px;
+	background-color: var(--bg-ternary);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.balance-box .icon i{
+	color: #5fcf65;
+	font-size: 18px;
+}
+.balance-box:nth-of-type(2) .icon i{
+	color: var(--primary-clr);
+}
+.balance-box .progress-row{
+	position: relative;
+	width: 100%;
+}
+.balance-box .progress-row .subject{
+	font-size: 15px;
+	color: var(--text-clr);
+	margin-top: 3px;
+	text-transform: lowercase;
+}
+.balance-box .progress-row .progress-bar{
+	width: 100%;
+	height: 5px;
+	background-color: var(--bg-ternary);
+	border-radius: 15px;
+	margin-top: 10px;
+}
+.balance-box .progress-row .progress-bar .progress-line{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #5fcf65;
+	border-radius: 15px;
+}
+.balance-box:nth-of-type(2) .progress-row .progress-bar .progress-line{
+	background-color: var(--primary-clr);
+}
+.balance-box .progress-row .progress-bar .progress-line::after{
+	position: absolute;
+	content: attr(value);
+	top: -25px;
+	right: 0;
+	transform: translateX(50%);
+	color: var(--text-clr);
+	font-size: 15px;
+}
+/*   === Balance Boxes Ends ===   */
+/*dropdown three button*/
+.order-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Aligns to the right */
+}
+
+.dropdown-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px; /* Adjust size as needed */
+    color: var(--text-clr); /* Use text color variable */
+    margin: 0 auto; /* Center the button */
+}
+
+.dropdown-menu {
+    display: none; /* Hidden by default */
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: var(--bg-secondary);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px; /* Rounded edges */
+    z-index: 1;
+    min-width: 150px; /* Minimum width to ensure visibility */
+    overflow: hidden; /* Prevent overflow */
+}
+
+.order-dropdown:hover .dropdown-menu {
+    display: block; /* Show menu on hover */
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: var(--text-clr); /* Use text color variable */
+    text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--primary-clr); /* Highlight on hover */
+}
+
+
+/*three dot drop down*/
+/*   === Chart Starts ===   */
+.col-1 .chart{
+	width: 100%;
+	background-color: var(--bg-primary);
+	padding: 30px 25px;
+	border-radius: 5px;
+	margin-top: 25px;
+}
+.col-1 .chart .chart-header{
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 20px;
+}
+.chart .chart-header h2{
+	font-size: calc(20px + 0.40vw);
+	color: var(--heading-clr);
+	font-weight: 500;
+}
+.chart .chart-header input{
+	border-radius: 5px;
+	outline: none;
+	border: none;
+	padding: 5px 10px;
+	background-color: var(--bg-ternary);
+	color: var(--heading-clr);
+}
+.chart .chart-contents{
+	position: relative;
+	width: 100%;
+	height: 300px;
+	margin-top: 25px;
+}
+.chart .chart-contents .chart-grid{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+.chart .chart-contents .chart-grid .grid-line{
+	position: relative;
+	width: calc(100% - 50px);
+	height: calc(300px / 5);
+	border-top: 1px solid var(--bg-ternary);
+	z-index: 1;
+}
+.chart .chart-contents .chart-grid .grid-line::before{
+	content: attr(value);
+	position: absolute;
+	left: -50px;
+	transform: translateY(-50%);
+	font-size: 15px;
+	color: var(--text-clr);
+}
+.chart-contents .chart-value-wrapper{
+	padding-left: 50px;
+	position: absolute;
+	width: 100%;
+	height: calc(calc(100% / 6) * 5);
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-end;
+	z-index: 3;
+}
+.chart-value-wrapper .chart-value{
+	position: relative;
+	width: 26px;
+	height: 100%;
+	background-color: var(--primary-clr);
+	background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%,
+		rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+	border-radius: 100px / 30px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+	z-index: 4;
+}
+.chart-value-wrapper .chart-value::before{
+	content: '';
+	position: absolute;
+	width: inherit;
+	height: 8px;
+	top: 0;
+	left: 0;
+	border-radius: 100px / 30px;
+	background-color: #ff724c;
+}
+.chart-contents .chart-labels{
+	position: absolute;
+	width: 100%;
+	left: 0;
+	bottom: 10px;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	padding-left: 50px;
+}
+.chart-contents .chart-labels div{
+	color: var(--text-clr);
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 500;
+	transform: rotate(-30deg);
+}
+/*   === Chart Ends ===   */
+/*   === Code For Column 1 Ends ===   */
+
+/*   === Code For Column 2 Starts ===   */
+/* Products */
+.description .col-2{
+	width: 100%;
+}
+.description .col-2 .top-products{
+	background-color: var(--bg-primary);
+	padding: 30px 15px;
+	border-radius: 5px;
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+.col-2 .top-products .products-header{
+	width: 100%;
+	padding-bottom: 20px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid var(--text-clr);
+}
+.col-2 .top-products .products-header h1{
+	color: var(--heading-clr);
+	font-size: calc(22px + 0.30vw);
+	font-weight: 400;
+	letter-spacing: 1px;
+}
+.col-2 .top-products .products-wrapper{
+	position: relative;
+	max-height: 350px;
+	overflow-y: auto;
+	padding-right: 20px;
+}
+.col-2 .top-products .products-wrapper::-webkit-scrollbar{
+	width: 5px;
+}
+.col-2 .top-products .products-wrapper::-webkit-scrollbar-track{
+	border-radius: 5px;
+}
+.col-2 .top-products .products-wrapper::-webkit-scrollbar-thumb{
+	background-color: var(--bg-ternary);
+	border-radius: 5px;
+}
+.top-products .products-wrapper .product{
+	padding: 10px 0px;
+	display: flex;
+	border-top: 1px solid var(--bg-ternary);
+}
+.top-products .products-wrapper .product:nth-of-type(1){
+	border-top: none;
+}
+.products-wrapper .product .product-img{
+	width: 50px;
+	min-width: 50px;
+	height: 50px;
+	min-height: 50px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+.products-wrapper .product .product-img img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	object-fit: cover;
+}
+.products-wrapper .product .product-desc{
+	width: 100%;
+	position: relative;
+}
+.product .product-desc .product-row-1{
+	display: flex;
+	justify-content: space-between;
+	gap: 0px 15px;
+}
+.product-desc .product-row-1 h2{
+	font-size: 17px;
+	color: var(--heading-clr);
+	font-weight: 400;
+}
+.product-desc .product-row-1 i{
+	position: relative;
+	color: var(--text-clr);
+	top: 3px;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+.product-desc .product-row-1 i:hover{
+	color: var(--heading-clr);
+}
+.product-desc .product-row-2{
+	margin-top: 5px;
+}
+.product-desc .product-row-2 p{
+	color: var(--text-clr);
+	font-size: 15px;
+}
+/* General Chart Container */
+.chart {
+    width: 100%;
+    background-color: var(--bg-primary);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+/* General Chart Container */
+.chart1 {
+    width: 100%;
+	color: white;
+    background-color: var(--bg-primary); /* Adjust as needed */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+/* Chart Header */
+.trans-header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--heading-clr); /* Adjust as needed */
+    margin-bottom: 15px;
+}
+
+/* Table Styling */
+.recent-transaction table {
+    width: 100%;
+	color: var(--heading-clr);
+    border-collapse: collapse;
+    background-color: var(--bg-secondary); /* Adjust as needed */
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: left;
+}
+
+/* Table Header */
+.recent-transaction table thead tr {
+    background-color: var(--primary-clr); /* Adjust as needed */
+    color: var(--heading-clr);
+}
+
+.recent-transaction table th {
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 16px;
+    border-bottom: 2px solid var(--bg-primary); /* Adjust as needed */
+}
+
+/* Table Body */
+.recent-transaction table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.recent-transaction table tbody tr:hover {
+    background-color: var(--bg-ternary);
+}
+
+.recent-transaction table td {
+    padding: 12px;
+    font-size: 14px;
+
+    color: var(--heading-clr); /* Adjust as needed */
+    border-bottom: 1px solid var(--bg-primary); /* Adjust as needed */
+}
+
+/* Optional Styling for Table Data Alignment */
+.recent-transaction table td:nth-child(1),
+.recent-transaction table th:nth-child(1) {
+    text-align: center; /* Center align for "Table No." */
+}
+
+.recent-transaction table td:nth-child(3),
+.recent-transaction table th:nth-child(3) {
+    text-align: right; /* Right align for "Amount" */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .trans-header h2 {
+        font-size: 20px;
+    }
+
+    .recent-transaction table th,
+    .recent-transaction table td {
+        padding: 10px;
+        font-size: 13px;
+    }
+}
+
+
+
+/* Balance Card */
+.col-2 .balance-card{
+	width: 100%;
+	background-color: var(--bg-primary);
+	padding: 30px 20px;
+	border-radius: 5px;
+	margin-top: 20px;
+	float: left; /* Align to the left */
+    margin-right: auto;
+}
+.col-2 .balance-card .balance-card-top{
+	display: flex;
+	justify-content: space-between;
+}
+.balance-card .balance-card-top .text{
+	position: relative;
+}
+.balance-card .balance-card-top .text h3{
+	color: var(--text-clr);
+	font-size: 16px;
+	font-weight: 500;
+}
+.balance-card .balance-card-top .text h1{
+	color: var(--heading-clr);
+	font-size: calc(32px + 0.35vw);
+	font-weight: 500;
+	letter-spacing: 1px;
+	margin: 20px 0px;
+}
+.balance-card .balance-card-top .text h1 sub{
+	position: relative;
+	font-size: 13px;
+	color: var(--text-clr);
+	left: 5px;
+	top: -5px;
+}
+.balance-card .balance-card-top .icon{
+	width: 45px;
+	height: 45px;
+	background-color: var(--bg-ternary);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.balance-card .balance-card-top .icon i{
+	color: #5fcf65;
+	font-size: 18px;
+}
+.balance-card .balance-card-middle{
+	position: relative;
+	width: 100%;
+}
+.balance-card .balance-card-middle .subject{
+	font-size: 15px;
+	color: var(--text-clr);
+	margin-top: 3px;
+}
+.balance-card .balance-card-middle .progress-bar{
+	width: 100%;
+	height: 5px;
+	background-color: var(--bg-ternary);
+	border-radius: 15px;
+	margin-top: 10px;
+}
+.balance-card .balance-card-middle .progress-bar .progress-line{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #5fcf65;
+	border-radius: 15px;
+}
+.balance-card .balance-card-middle .progress-bar .progress-line::after{
+	position: absolute;
+	content: attr(value);
+	top: -25px;
+	right: 0;
+	transform: translateX(50%);
+	color: var(--text-clr);
+	font-size: 15px;
+}
+.balance-card .balance-card-bottom{
+	margin-top: 35px;
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
+}
+.balance-card .balance-card-bottom button{
+	flex-basis: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px;
+	font-size: calc(14px + 0.12vw);
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.balance-card .balance-card-bottom button i{
+	width: 25px;
+	height: 25px;
+	border: 1px solid var(--heading-clr);
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 6px;
+	font-size: 15px;
+}
+.balance-card .balance-card-bottom button:nth-of-type(1) i{
+	color: var(--heading-clr);
+	transform: rotate(-135deg);
+}
+.balance-card .balance-card-bottom button:nth-of-type(1){
+	background-color: var(--primary-clr);
+	color: var(--heading-clr);
+}
+.balance-card .balance-card-bottom button:nth-of-type(2) i{
+	transform: rotate(35deg);
+}
+.balance-card .balance-card-bottom button:nth-of-type(2){
+	background-color: transparent;
+	border: 1px solid var(--primary-clr);
+	color: var(--heading-clr);
+}
+/*   === Code For Column 2 Ends ===   */
+/*   === Code For Description Ends ===   */
+/*   === Code For Contents Ends ===   */
+
+
+/*   === Media Query Starts ===   */
+@media(max-width: 1068px){
+	/* Side Bar */
+	.page-wrapper .side-bar{
+		width: 70px;
+	}
+	.page-wrapper .side-bar.active{
+		width: 240px;
+	}
+	.side-bar .menu-label{
+		display: none;
+	}
+	.side-bar.active .menu-label{
+		display: block;
+	}
+	.side-bar ul.navbar-links.navbar-links-1{
+		margin-top: 15px;
+	}
+	ul.navbar-links li a .nav-icon i{
+		margin-right: 5px;
+	}
+	.sidebar-footer .settings .gear-icon i,
+	.sidebar-footer .logoutBtn .logout-icon i{
+		margin-right: 5px;
+	}
+	.side-bar .line{
+		width: calc(100% - 20px);
+		left: 10px;
+	}
+	/* Top Bar */
+	.top-bar .top-bar-left .logo{
+		display: none;
+	}
+	.top-bar .top-bar-left .hamburger-btn{
+		display: flex;
+	}
+	.page-wrapper .top-bar{
+		padding: 0px 16px;
+	}
+	.page-wrapper .top-bar .top-bar-left{
+		position: relative;
+		max-width: 70px;
+		width: 70px;
+		left: -21px;
+		justify-content: center;
+	}
+	.top-bar .search-box{
+		left: 0;
+		width: 330px;
+	}
+	/* Contents */
+	.page-wrapper .contents{
+		padding-left: 70px;
+	}
+}
+@media(max-width: 868px){
+	.contents .description{
+		grid-template-columns: 1fr;
+	}
+}
+@media(max-width: 668px){
+	.description .col-1 .boxes-row{
+		grid-template-columns: 1fr;
+	}
+}
+@media(max-width: 568px){
+	/* Remove Search Bar */
+	.top-bar .search-box{
+		display: none;
+	}
+	/* Hide Side Bar */
+	.page-wrapper .side-bar{
+		width: 0px;
+	}
+	/* Remove Contents Padding */
+	.page-wrapper .contents{
+		padding-left: 0px;
+	}
+	/* Chart */
+	.chart-value-wrapper .chart-value{
+		width: 18px;
+	}
+	.chart-value-wrapper .chart-value::before{
+		display: none;
+	}
+	.chart-contents .chart-labels div{
+		font-size: 13px;
+		font-weight: 400;
+	}
+}
+@media(max-width: 468px){
+	/* Chart Header */
+	.col-1 .chart .chart-header{
+		flex-direction: column;
+		gap: 10px;
+	}
+	.chart .chart-header h2{
+		font-size: calc(18px + 0.30vw);
+	}
+	/* Chart Pole Width */
+	.chart-value-wrapper .chart-value{
+		width: 13px;
+	}
+	/* Panel Links */
+	.contents .panel-bar .row-2 a{
+		margin-right: 12px;
+		font-size: 14px;
+	}
+}
+/*add order*/
+.add-order-section {
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.add-order-section h2 {
+    color: var(--heading-clr);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text-clr);
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--text-clr);
+    border-radius: 5px;
+    background-color: var(--bg-ternary);
+    color: var(--heading-clr);
+    transition: border 0.3s;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    border-color: var(--primary-clr);
+}
+.order-items-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to the next line */
+    gap: 10px; /* Space between the forms */
+    justify-content: flex-start; /* Align items to the start of the row */
+}
+
+.order-item {
+    flex: 1 1 calc(25% - 10px); /* Set each form to take up 25% of the width minus the gap */
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    box-sizing: border-box;
+    min-width: 200px; /* Ensures the minimum width of each form is 200px */
+    max-width: calc(25% - 10px); /* Limits the width of each form to 25% of the container width */
+}
+
+
+.order-item label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--heading-clr);
+}
+
+.order-item select,
+.order-item input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--text-clr);
+    border-radius: 4px;
+    background-color: var(--bg-secondary);
+    color: var(--heading-clr);
+}
+
+.remove-item-btn {
+    background-color: var(--primary-clr);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.remove-item-btn:hover {
+    background-color: darken(var(--primary-clr), 10%);
+}
+
+
+@media (max-width: 600px) {
+    .add-order-section {
+        padding: 15px;
+    }
+
+    .form-group input, .form-group select {
+        padding: 8px;
+    }
+
+    .remove-item-btn,
+    .add-item-btn,
+    .submit-order-btn {
+        padding: 8px 15px;
+    }
+}
+/* Button Styling */
+.add-item-btn,
+.submit-order-btn {
+    background-color: var(--primary-clr); /* Replace with your primary color */
+    color: white; /* Text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Transition for hover effect */
+}
+
+/* Hover effect for add and submit buttons */
+.add-item-btn:hover,
+.submit-order-btn:hover {
+    background-color: var(--primary-dark-clr); /* Darker shade for hover effect */
+}
+
+/* General styling for the remove button (no specific colors) */
+.remove-item-btn {
+    background-color: var(--bg-secondary); /* Neutral color or same as default */
+    color: var(--text-clr); /* Use your text color */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Transition for hover effect */
+}
+
+/* Hover effect for remove button */
+.remove-item-btn:hover {
+    background-color: var(--bg-secondary-dark); /* Darker shade for hover */
+}
+/* Button Styling */
+.add-item-btn,
+.submit-order-btn,
+.remove-item-btn {
+    background-color: var(--primary-clr); /* Replace with your primary color */
+    color: white; /* Text color */
+    border: none;
+	width: 25%;
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 15px; /* Padding */
+    font-size: 16px; /* Font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Transition for hover effect */
+}
+
+/* Hover effect for add, submit, and remove buttons */
+.add-item-btn:hover,
+.submit-order-btn:hover,
+.remove-item-btn:hover {
+    background-color: var(--primary-dark-clr); /* Darker shade for hover effect */
+}
+.order-items-container {
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap to a new row if the container's width is exceeded */
+    gap: 10px; /* Add some spacing between forms */
+}
+
+.order-item {
+    flex: 1 1 200px; /* Set the base width for each form */
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    box-sizing: border-box;
+    min-width: 200px; /* Optional, to define a minimum width */
+}
+
+/*menu items styling*/
+/* Dropdown Container Styling */
+/* Dropdown Container Styling */
+.dropdown-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Dropdown List */
+.dropdown-container ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    background-color: var(--bg-ternary);  /* Changes with theme */
+    border: 1px solid var(--text-clr);    /* Border color changes based on text color */
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+/* Dropdown List Items */
+.dropdown-container ul li {
+    padding: 10px;
+    cursor: pointer;
+    color: var(--heading-clr);   /* Text color switches based on mode */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+/* Hover Effect for List Items */
+.dropdown-container ul li:hover {
+    background-color: var(--bg-secondary);  /* Hover background changes with theme */
+}
+
+/* Specific styling when Light Mode is activated */
+body.active .dropdown-container ul li {
+    color: var(--heading-clr);  /* Dark text in light mode */
+}
+
+/* Smooth transitions */
+body, .dropdown-container ul li {
+    transition: all 0.3s ease;
+}
+
+
+/* menu items styling */
+/* Add Menu Section */
+.add-menu-section {
+    background-color: var(--bg-secondary); /* Dark mode background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 0 auto;
+    color: var(--heading-clr); /* Text color for dark mode */
+}
+
+body.active .add-menu-section {
+    background-color: var(--bg-ternary); /* Light mode background */
+    color: var(--heading-clr); /* Text color for light mode */
+}
+
+.add-menu-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--heading-clr); /* Heading color for both modes */
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.add-item-btn,
+.submit-menu-btn {
+    background-color: var(--primary-clr);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+	width: 25%;
+    transition: background-color 0.3s ease;
+}
+
+.add-item-btn:hover,
+.submit-menu-btn:hover {
+    background-color: #45a049;
+}
+
+.add-menu-container {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to the next line */
+    gap: 10px; /* Space between the forms */
+    justify-content: flex-start; /* Align items to the start of the row */
+}
+
+.order-item {
+    flex: 1 1 calc(25% - 10px); /* Set each form to take up 25% of the width minus the gap */
+    padding: 10px;
+    border: 1px solid var(--text-clr); /* Border color for dark mode */
+    margin: 10px 0;
+    box-sizing: border-box;
+    min-width: 200px; /* Ensures the minimum width of each form is 200px */
+    max-width: calc(25% - 10px); /* Limits the width of each form to 25% of the container width */
+    background-color: var(--bg-primary); /* Background for order item in dark mode */
+}
+
+body.active .order-item {
+    background-color: var(--bg-ternary); /* Background for order item in light mode */
+}
+
+/* Menu Item Styles */
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid var(--text-clr); /* Border for dark mode */
+    border-radius: 5px;
+    background-color: var(--bg-primary); /* Background for menu item in dark mode */
+}
+
+body.active .menu-item {
+    background-color: #fff; /* Background for menu item in light mode */
+    border: 1px solid #ccc; /* Border for menu item in light mode */
+}
+
+.menu-item label {
+    font-size: 16px;
+    color: var(--heading-clr); /* Label color for both modes */
+    margin-bottom: 5px;
+}
+
+.menu-item input,
+.menu-item select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid var(--text-clr); /* Input border color for dark mode */
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: var(--bg-primary); /* Input background for dark mode */
+    color: var(--heading-clr); /* Input text color for dark mode */
+}
+
+body.active .menu-item input,
+body.active .menu-item select {
+    border: 1px solid #ccc; /* Input border for light mode */
+    background-color: #fff; /* Input background for light mode */
+    color: #333; /* Input text color for light mode */
+}
+
+.menu-item input:focus,
+.menu-item select:focus {
+    outline: none;
+    border-color: var(--primary-clr); /* Focus border color */
+}
+
+/* Remove Button */
+.remove-item-btn {
+    background-color: #f44336;
+    color: white;
+	width: 100%;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: flex-start;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.remove-item-btn:hover {
+    background-color: #e53935;
+}
+/*view Menu */
+
+.container {
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+	color: #000000; /* Primary color */
+}
+
+.menu-category {
+	margin: 20px 0;
+}
+
+.menu-category h2 {
+	background-color: #ef9023; /* Primary color */
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+}
+.menu-category h2:hover {
+	background-color: #14bd11; /* Primary color */
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.menu-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.menu-table th, .menu-table td {
+	padding: 12px;
+	text-align: left;
+	border: 1px solid #ddd;
+}
+
+.menu-table tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.menu-table tr:hover {
+	background-color: #eaeaea;
+}
+
+.action-btn {
+	background-color: #861b1d; /* Primary color */
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 3px;
+}
+
+.action-btn:hover {
+	background-color: #a53a3e; /* Darker shade */
+}
+/*sales inslight *//* Container for the content */
+.container {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Flexbox for chart and legend */
+.chart-legend-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+}
+
+/* Sales Insight Section */
+.sales-insight-section {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space out the two containers */
+}
+
+/* Chart Container */
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%; /* Adjust as needed */
+    padding: 20px; /* Add some padding */
+}
+
+#salesChart {
+    max-width: 500px; /* Make the pie chart bigger */
+    max-height: 400px; /* Increase height as well */
+}
+
+/* Legend Container */
+.legend-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 45%; /* Legend will take the remaining space */
+    padding-left: 20px;
+}
+
+.legend-item {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.legend-color-box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+/* Table Container */
+.table-container {
+    width: 60%; /* Adjust as needed */
+    padding: 20px; /* Add some padding */
+    overflow-x: auto;
+}
+
+/* Heading Styles */
+h2 {
+    color: var(--heading-color);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%; /* Make the table full width */
+    border-collapse: collapse; /* Remove double borders */
+    background-color: var(--primary-background);
+    border: 1px solid var(--primary-border-color);
+    border-radius: 10px;
+    box-shadow: var(--table-shadow);
+}
+
+/* Table Heading Styles */
+th, td {
+    padding: 15px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--secondary-border-color);
+}
+
+th {
+    background-color: #FFA500; /* Orange background for the headings */
+    color: var(--text-on-dark);
+}
+
+/* Table Data Styles */
+td {
+    color: var(--text-color);
+}
+
+/* Hover effect for the rows */
+tbody tr:hover {
+    background-color: var(--hover-background);
+    cursor: pointer;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .chart-legend-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chart-container, .legend-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    #salesChart {
+        max-width: 100%;
+        max-height: auto;
+    }
+
+    table {
+        width: 100%;
+    }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+table th,
+table td {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode table th,
+body.dark-mode table td {
+    color: #ffffff; /* White text in dark mode */
+}
+
+body.light-mode table th,
+body.light-mode table td {
+    color: #000000; /* Black text in light mode */
+}
+
+/* Hover effect for dark mode */
+body.dark-mode tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Light hover effect in dark mode */
+}
+
+/* Hover effect for light mode */
+body.light-mode tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Dark hover effect in light mode */
+}
+
+
+/*add table */
+.add-table-section {
+    background-color: var(--bg-secondary); /* Dark mode background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 20px auto; /* Added margin for spacing */
+    color: var(--heading-clr); /* Text color for dark mode */
+}
+
+body.active .add-table-section {
+    background-color: var(--bg-ternary); /* Light mode background */
+    color: var(--heading-clr); /* Text color for light mode */
+}
+
+.add-table-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--heading-clr); /* Heading color for both modes */
+}
+
+/* Table Form Container */
+.table-form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between the form elements */
+}
+
+/* Form Group Styling */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 16px;
+    color: var(--heading-clr); /* Label color for both modes */
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid var(--text-clr); /* Input border color for dark mode */
+    border-radius: 5px;
+    background-color: var(--bg-primary); /* Input background for dark mode */
+    color: var(--heading-clr); /* Input text color for dark mode */
+}
+
+body.active .form-group input,
+body.active .form-group select {
+    border: 1px solid #ccc; /* Input border for light mode */
+    background-color: #fff; /* Input background for light mode */
+    color: #333; /* Input text color for light mode */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-clr); /* Focus border color */
+}
+
+/* Button Styling */
+.add-table-btn {
+    background-color: var(--primary-clr);
+    color: white;
+    border: none;
+	width: 24.2%;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.add-table-btn:hover {
+    background-color: #45a049; /* Darker shade on hover */
+}
+
+
+
+/*tables */
+.add-order-section {
+    background-color: var(--bg-secondary); /* Dark mode background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 0 auto;
+    color: var(--heading-clr); /* Text color for dark mode */
+}
+
+body.active .add-order-section {
+    background-color: var(--bg-ternary); /* Light mode background */
+    color: var(--heading-clr); /* Text color for light mode */
+}
+
+.add-order-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: var(--heading-clr); /* Heading color for both modes */
+}
+
+/* Form Group Styling */
+.order-item {
+    flex: 1 1 calc(25% - 10px); /* Set each form to take up 25% of the width minus the gap */
+    padding: 10px;
+    border: 1px solid var(--text-clr); /* Border color for dark mode */
+    margin: 10px 0;
+    box-sizing: border-box;
+    min-width: 200px; /* Ensures the minimum width of each form is 200px */
+    max-width: calc(25% - 10px); /* Limits the width of each form to 25% of the container width */
+    background-color: var(--bg-primary); /* Background for order item in dark mode */
+}
+
+body.active .order-item {
+    background-color: var(--bg-ternary); /* Background for order item in light mode */
+}
+
+/* Button Styles */
+.add-item-btn,
+.submit-order-btn {
+    background-color: var(--primary-clr);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 25%;
+    transition: background-color 0.3s ease;
+}
+
+.add-table-btn:hover,
+.submit-order-btn:hover {
+    background-color: #45a049;
+}
+
+/* Remove Button */
+.remove-item-btn {
+    background-color: #f44336;
+    color: white;
+    width: 100%;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    align-self: flex-start;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.remove-item-btn:hover {
+    background-color: #e53935;
+}
+/*tables*/
+
+
+
+
+/*checkout*/
+/* General Checkout Styling */
+
+.contents {
+    padding: 20px;
+    background-color: var(--bg-primary);
+    color: var(--text-clr);
+}
+
+h2, h3 {
+    color: var(--heading-clr);
+    margin-bottom: 15px;
+}
+
+.checkout-section {
+    margin: 20px 0;
+}
+
+.checkout-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.checkout-table th, .checkout-table td {
+    border: 1px solid var(--text-clr);
+    padding: 10px;
+    text-align: left;
+}
+
+.checkout-table th {
+    background-color: var(--primary-clr);
+    color: white;
+}
+
+.total-section {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.promo-section {
+    margin-bottom: 20px;
+}
+
+.promo-section label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.promo-section input[type="text"] {
+    padding: 8px;
+    border: 1px solid var(--text-clr);
+    width: 200px;
+    margin-right: 10px;
+    background-color: var(--bg-secondary);
+    color: var(--text-clr);
+}
+
+.promo-section button {
+    padding: 8px 12px;
+    background-color: var(--primary-clr);
+    color: var(--heading-clr);
+    border: none;
+    cursor: pointer;
+}
+
+.payment-section {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.payment-section input[type="radio"] {
+    margin-right: 8px;
+}
+
+.checkout-buttons {
+    margin-top: 20px;
+}
+
+.cancel-btn, .submit-btn {
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.cancel-btn {
+    background-color: #ff4c4c; /* Use specific color if no variable is set */
+    color: white;
+}
+
+.submit-btn {
+    background-color: #32cd32; /* Use specific color if no variable is set */
+    color: white;
+}
+
+/* Popup Styling */
+/* Popup Styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--bg-secondary);
+    color: var(--text-clr);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+    width: 300px;
+}
+
+.popup.show {
+    display: block;
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.popup-content i {
+    font-size: 50px;
+    color: var(--primary-clr);
+    margin-bottom: 10px;
+}
+
+.popup-content h3 {
+    margin-bottom: 10px;
+}
+
+.popup-content button {
+    background-color: var(--primary-clr);
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+/* Style for the "Apply" button with rounded edges */
+.apply-btn {
+    padding: 8px 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Rounded edges */
+    cursor: pointer;
+}
+
+.apply-btn:hover {
+    background-color: #0056b3;
+}
+
+.discount-section {
+    margin-top: 10px;
+    font-size: 1.1em;
+    color: green;
+}
+
+.checkout-buttons .submit-btn, .checkout-buttons .cancel-btn {
+    padding: 10px 20px;
+    border-radius: 5px; /* Rounded edges */
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.cancel-btn {
+    background-color: #FF3E3E;
+    color: white;
+}
+
+.submit-btn {
+    background-color: #28A745;
+    color: white;
+    margin-left: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn:hover {
+    background-color: #d32f2f;
+}
+
+/*checkoutend*/
+
+
+/*update data*/
+/* Add this to your existing CSS */
+.checkout-table th, .checkout-table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.edit-btn {
+    background-color: #ff7550; /* Your primary color */
+    color: white;
+    border: none;
+	width: 30%;
+    border-radius: 12px; /* Rounded edges */
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #e06a40; /* Slightly darker on hover */
+}
+
+/* Styling for edit form */
+.edit-form {
+    display: none; /* Initially hidden */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+	width: 100%;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.edit-form input {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+/*update table */
+
+
+.edit-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.edit-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.edit-form h3 {
+    margin-bottom: 15px;
+}
+
+.edit-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.edit-form input, .edit-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.edit-form button {
+    padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-form button:hover {
+    background-color: #4cae4c;
+}
+@media (max-width: 768px) {
+    .checkout-table, .total-section {
+        font-size: 0.9em; /* Slightly smaller font size on mobile */
+    }
+
+    .promo-section input {
+        width: 60%; /* Reduce width for smaller screens */
+    }
+}
+
+.edit-btn, .save-btn {
+    background-color: #ff7550; /* Primary color */
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded edges */
+    font-size: 1em; /* Font size */
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover {
+    background-color: #de6c4c; /* Darker blue on hover */
+}
+
+.save-btn {
+    background-color: #28a745; /* Green */
+}
+
+.save-btn:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/*account*/
+/* General Form Styles */
+.form-container {
+    background-color: var(--bg-secondary);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h3 {
+    margin-bottom: 15px;
+    color: var(--heading-clr);
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-clr);
+    font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: var(--bg-primary);
+    color: var(--text-clr);
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="password"]:focus {
+    border-color: var(--primary-clr);
+    outline: none;
+}
+
+.submit-btn {
+    background-color: var(--primary-clr);
+    color: rgb(0, 0, 0);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px; /* Rounded edges */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--submit-color-dark);
+}
+
+/* Logout Section Styles */
+.logout-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.logout-btn {
+    background-color: #ff4c4c; /* Red color for logout */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px; /* Rounded edges */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1001; /* Above other elements */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: var(--bg-primary);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.confirm-btn, .cancel-btn {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 25px; /* Rounded edges */
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.confirm-btn {
+    background-color: #28a745; /* Green */
+    color: white;
+}
+
+.confirm-btn:hover {
+    background-color: #218838; /* Darker green */
+}
+
+.cancel-btn {
+    background-color: #6c757d; /* Gray */
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268; /* Darker gray */
+}
+/*
+/* Responsive Design for Forms and Modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+    }
+
+    .form-container {
+        padding: 15px;
+    }
+
+    .submit-btn, .logout-btn {
+        width: 100%;
+    }
+}
+.table-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 15px;
+    justify-items: center;
+  }
+
+  .table-box {
+    width: 100px;
+    height: 100px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .table-box:hover {
+    transform: scale(1.05);
+  }
+
+  .available {
+    background-color: #4CAF50;
+  }
+
+  .occupied {
+    background-color: #FFA500;
+  }
+
+  .reserved {
+    background-color: #FF4C4C;
+  } */
