@@ -121,36 +121,40 @@
         <!-- All Orders Section Ends -->
 		<div class="add-order-section">
 			<h2>Add New Order</h2>
-			<form id="orderForm">
-				<div class="form-group">
-					<label for="tableNumber">Table Number:</label>
-					<input type="number" id="tableNumber" name="tableNumber" min="1" required>
-				<br><br>
-<button type="button" class="add-item-btn">+ Add Another Item</button>
+			<form id="orderForm" method="POST" action="{{ route('orders.store') }}">
+                @csrf
+                <div class="form-group">
+                    <label for="tableNumber">Table Number:</label>
+                    <input type="number" id="tableNumber" name="tableNumber" min="1" required>
+                    <br><br>
+                    <button type="button" class="add-item-btn">+ Add Another Item</button>
+                </div>
 
-				<div class="order-items-container">
-					<div class="order-item">
-						<label>Food Item Name:</label>
-						<select name="foodItem[]" required>
-							<option value="" disabled selected>Select a food item</option>
-							<option value="chiya">Chiya</option>
-							<option value="hukka">Hukka</option>
-							<option value="momo">Momo</option>
-						</select>
+                <div class="order-items-container">
+                    <div class="order-item">
+                        <label>Food Item Name:</label>
+                        <select name="foodItem[]" required>
+                            <option value="" disabled selected>Select a food item</option>
+                            <option value="chiya">Chiya</option>
+                            <option value="hukka">Hukka</option>
+                            <option value="momo">Momo</option>
+                        </select>
 
-						<label>Quantity:</label>
-						<input type="number" name="quantity[]" min="1" required>
+                        <label>Quantity:</label>
+                        <input type="number" name="quantity[]" min="1" required>
 
-						<label>Total Amount (Rs):</label>
-						<input type="number" name="totalAmount[]" required>
+                        <label>Total Amount (Rs):</label>
+                        <input type="number" name="totalAmount[]" required>
 
-						<button type="button" class="remove-item-btn">Remove</button>
-					</div>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="submit-order-btn">Submit Order</button>
-				</div>
-			</form>
+                        <button type="button" class="remove-item-btn">Remove</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="submit-order-btn">Submit Order</button>
+                </div>
+            </form>
+
 		</div>
 
 

@@ -7,6 +7,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\OrderController;
+
 
 // Landing page
 Route::get('/', function () {
@@ -43,6 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/table/viewtable', [TableController::class, 'viewtable'])->name('table.viewtable');
     Route::post('/table/store', [TableController::class, 'store'])->name('table.store');
     Route::get('/viewtable', [TableController::class, 'index'])->name('viewtable');
+
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+
 
 
     // Other pages requiring authentication
@@ -99,3 +104,9 @@ Route::get('/menu', function () {
 Route::delete('/menu/delete/{id}', [MenuController::class, 'destroy'])->name('menu.destroy');
 
 
+
+
+Route::get('/addorders', function () {
+    $menuItems = Menu::where('availability', true)->get(); // assuming you have an 'availability' column
+    return view('addorders', compact('menuItems'));
+})->name('addorders');
