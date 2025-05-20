@@ -118,7 +118,7 @@
                 <h2>All Orders</h2>
             </div>
             <div class="recent-transaction">
-                <table>
+                {{-- <table>
                     <thead>
                         <tr>
                             <th>Table No.</th>
@@ -215,7 +215,54 @@
                         </tr>
                         <!-- Add more rows as needed -->
                     </tbody>
-                </table>
+                </table> --}}
+
+                <table>
+    <thead>
+        <tr>
+            <th>Table No.</th>
+            <th>Time of Order</th>
+            <th>Total Items</th>
+            <th style="display: flex; gap: 16px; justify-content:center;">Actions</th>
+        </tr>
+    </thead>
+
+
+
+{{-- <a href="{{ route('orders.view', $order->table_id) }}">View Order</a>
+                        <a href="{{ route('orders.edit', $order->table_id) }}">Change Order</a> --}}
+
+                        {{-- <form action="{{ route('orders.delete', $order->table_id) }}" method="POST"> --}}
+
+
+
+    <tbody>
+        @forelse($orders as $order)
+        <tr>
+            <td>{{ $tables[$order->table_id] ?? 'N/A' }}</td>
+            <td>{{ \Carbon\Carbon::parse($order->created_at)->format('h:i A') }}</td>
+            <td>{{ $order->item_count }}</td>
+            <td style="text-align: right;">
+                <div style="display: flex; gap: 16px; justify-content:center;">
+                    <a href="" class="action-btn view-btn" style="background:none;border:none;color:#007bff;cursor:pointer;padding:0;font-size:1.1em;">View Order</a>
+                    <a href="" class="action-btn change-btn" style="background:none;border:none;color:#28a745;cursor:pointer;padding:0;font-size:1.1em;">Change Order</a>
+                    <form action="" method="POST" style="display:inline;">
+                        @csrf @method('DELETE')
+                        <button type="submit" class="action-btn delete-btn" style="background:none;border:none;color:#dc3545;cursor:pointer;padding:0;font-size:1.1em;" onclick="return confirm('Are you sure?')">
+                            Delete Order
+                        </button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        @empty
+        <tr>
+            <td colspan="4" style="text-align:center; color:#888;">No orders found.</td>
+        </tr>
+        @endforelse
+    </tbody>
+</table>
+
             </div>
         </div>
         <!-- All Orders Section Ends -->
@@ -226,6 +273,6 @@
 <!-- Page Wrapper Ends -->
 
 <!-- Link to Custom Script File -->
-<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/addorder.js') }}"></script>
 </body>
 </html>

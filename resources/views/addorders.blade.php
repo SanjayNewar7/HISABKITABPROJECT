@@ -121,28 +121,46 @@
         <!-- All Orders Section Ends -->
 		<div class="add-order-section">
 			<h2>Add New Order</h2>
-			<form id="orderForm">
-				<div class="form-group">
+			<form id="orderForm" action="{{ route('submitOrder') }}" method="POST">
+                  @csrf
+				<div class="form-group" >
 					<label for="tableNumber">Table Number:</label>
-					<input type="number" id="tableNumber" name="tableNumber" min="1" required>
+					{{-- <input type="number" id="tableNumber" name="tableNumber" min="1" required> --}}
+                   <select name="tableNumber" id="tableNumber" required>
+                        <option value="" disabled selected>Select a table</option>
+                        @foreach($tables as $table)
+                            <option value="{{ $table->id }}"
+                                @if($table->table_status == 'Reserved')
+                                    style="background-color: red; color: white;"
+                                @elseif($table->table_status == 'Occupied')
+                                    style="background-color: orange; color: black;"
+                                @endif
+                            >
+                                {{ $table->table_number }} ({{ $table->table_status }})
+                            </option>
+                        @endforeach
+                        
+                    </select>
 				<br><br>
+                </div>
 <button type="button" class="add-item-btn">+ Add Another Item</button>
 
 				<div class="order-items-container">
 					<div class="order-item">
 						<label>Food Item Name:</label>
-						<select name="foodItem[]" required>
-							<option value="" disabled selected>Select a food item</option>
-							<option value="chiya">Chiya</option>
-							<option value="hukka">Hukka</option>
-							<option value="momo">Momo</option>
+						<select name="foodItem[]" class="food-select" required>
+                            <option value="" disabled selected>Select a food item</option>
+                            @foreach($menus as $menu)
+                             <option value="{{ $menu->menu_id }}" data-price="{{ $menu->food_price }}">
+                               {{ $menu->food_name }}
+                            @endforeach
 						</select>
 
 						<label>Quantity:</label>
-						<input type="number" name="quantity[]" min="1" required>
+						<input type="number" name="quantity[]" class="quantity-input" min="1"  >
 
 						<label>Total Amount (Rs):</label>
-						<input type="number" name="totalAmount[]" required>
+                        <input type="number"  class="total-amount" readonly required>
 
 						<button type="button" class="remove-item-btn">Remove</button>
 					</div>
@@ -161,6 +179,6 @@
 <!-- Page Wrapper Ends -->
 
 <!-- Link to Custom Script File -->
-<script type="text/javascript" src="{{ asset('js/script.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/addorder.js') }}"></script>
 </body>
 </html>

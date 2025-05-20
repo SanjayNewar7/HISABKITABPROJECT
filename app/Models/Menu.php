@@ -11,7 +11,7 @@ class Menu extends Model
 
 
     protected $table = 'menudb';
-
+       protected $primaryKey = 'menu_id'; // explicitly define the primary key
     protected $fillable = [
         'food_name',
         'food_category',

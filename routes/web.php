@@ -7,10 +7,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\AddOrderController;
 
 // Landing page
 Route::get('/', function () {
-    return view('welcome');
+    return view('Welcome');
 })->name('welcome');
 
 // Authentication Routes
@@ -64,13 +65,17 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('/addorders', function () {
-        return view('addorders');
-    })->name('addorders');
-
-    Route::get('/neworders', function () {
-        return view('neworders');
-    })->name('neworders');
+    Route::get('/addorders', [AddOrderController::class, 'index'])->name('addorders');
+    Route::post('/addorders', [AddOrderController::class, 'store'])->name('submitOrder');
+    
+    
+    
+    
+    
+    Route::get('/neworders', [AddOrderController::class, 'showNewOrders'])->name('neworders');
+    // Route::get('/neworders', function () {
+    //     return view('neworders');
+    // })->name('neworders');
 
     Route::get('/checkedoutorders', function () {
         return view('checkedoutorders');
