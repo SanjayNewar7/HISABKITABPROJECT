@@ -8,6 +8,8 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\AddOrderController;
+use App\Http\Controllers\OrderController;
+
 
 // Landing page
 Route::get('/', function () {
@@ -67,11 +69,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/addorders', [AddOrderController::class, 'index'])->name('addorders');
     Route::post('/addorders', [AddOrderController::class, 'store'])->name('submitOrder');
-    
-    
-    
-    
-    
+
+
+
+
+
     Route::get('/neworders', [AddOrderController::class, 'showNewOrders'])->name('neworders');
     // Route::get('/neworders', function () {
     //     return view('neworders');
@@ -102,5 +104,12 @@ Route::get('/menu', function () {
 
 // Route for deleting a menu item (if needed)
 Route::delete('/menu/delete/{id}', [MenuController::class, 'destroy'])->name('menu.destroy');
+
+
+
+Route::get('/checkout/{table_id}', [OrderController::class, 'showCheckout'])->name('orders.checkout');
+
+Route::post('/checkout/submit', [OrderController::class, 'submitCheckout'])->name('checkout.submit');
+
 
 

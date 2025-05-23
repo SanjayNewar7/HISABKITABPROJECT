@@ -244,7 +244,7 @@
             <td>{{ $order->item_count }}</td>
             <td style="text-align: right;">
                 <div style="display: flex; gap: 16px; justify-content:center;">
-                    <a href="" class="action-btn view-btn" style="background:none;border:none;color:#007bff;cursor:pointer;padding:0;font-size:1.1em;">View Order</a>
+                    <a href="{{ route('orders.checkout', $order->table_id) }}" class="action-btn view-btn" style="background:none;border:none;color:#007bff;cursor:pointer;padding:0;font-size:1.1em;">View Order</a>
                     <a href="" class="action-btn change-btn" style="background:none;border:none;color:#28a745;cursor:pointer;padding:0;font-size:1.1em;">Change Order</a>
                     <form action="" method="POST" style="display:inline;">
                         @csrf @method('DELETE')

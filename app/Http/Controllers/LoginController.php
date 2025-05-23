@@ -39,7 +39,7 @@ class LoginController extends Controller
         // Check if the user exists and the password is correct
         if (Auth::attempt($credentials)) {
             // Authentication passed, redirect to the dashboard
-            return redirect()->route('dashboard'); // Adjust this to your dashboard route
+            return redirect()->route('viewtable'); // Adjust this to your dashboard route
         }
 
         // If authentication fails, redirect back with an error message
